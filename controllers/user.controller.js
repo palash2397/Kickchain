@@ -2,6 +2,7 @@ import Joi from "joi";
 
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Msg } from "../utils/responseMsg.js";
+import { generateOtp, getExpirationTime } from "../utils/helpers.js";
 
 import User from "../models/user/user.js";
 
@@ -24,17 +25,14 @@ export const userRegister = async (req, res) => {
         .json(new ApiResponse(400, {}, error.details[0].message));
 
     const existingUser = await User.findOne({
-      $or: [
-        { email: email.toLowerCase() },
-        { phoneNumber },
-      ],
+      $or: [{ email: email.toLowerCase() }, { phoneNumber }],
     });
-
-    
 
     if (existingUser)
       return res.status(400).json(new ApiResponse(400, {}, Msg.USER_EXISTS));
-     
+
+    const otp = generateOtp();
+    const otpExpiration = getExpirationTime();
 
     const user = await User.create({
       name,
@@ -43,7 +41,8 @@ export const userRegister = async (req, res) => {
       password,
       gender,
       avatar: req.file ? req.file.filename : null,
-
+      otp,
+      otpExpireAt: otpExpiration,
     });
     return res.status(200).json(new ApiResponse(200, user, Msg.SUCCESS));
   } catch (error) {
