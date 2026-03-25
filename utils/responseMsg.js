@@ -1,3 +1,4 @@
+
 export const Msg = {
   // General
   SERVER_ERROR: `Internal server error`,
