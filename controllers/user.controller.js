@@ -204,7 +204,9 @@ export const login = async (req, res) => {
 
 export const myProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    const user = await User.findById(req.user.id).select(
+      "-password -otp -otpExpireAt -__v",
+    );
     if (!user) {
       return res.status(404).json(new ApiResponse(404, {}, Msg.USER_NOT_FOUND));
     }
