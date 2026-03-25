@@ -50,3 +50,13 @@ export const userRegister = async (req, res) => {
     return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
   }
 };
+
+
+export const verifyOtp = async (req, res) => {
+  try {
+    
+  } catch (error) {
+    console.log(`error while verifying otp`, error);
+    return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
+  }
+}
