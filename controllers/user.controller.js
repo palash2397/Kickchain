@@ -88,12 +88,6 @@ export const verifyOtp = async (req, res) => {
         .json(new ApiResponse(400, {}, Msg.USER_ALREADY_VERIFIED));
     }
 
-    if (user.isVerified) {
-      return res
-        .status(400)
-        .json(new ApiResponse(400, {}, Msg.USER_ALREADY_VERIFIED));
-    }
-
     user.isVerified = true;
     user.otp = null;
     user.otpExpireAt = null;
@@ -140,7 +134,7 @@ export const resendOtp = async (req, res) => {
     user.otpExpireAt = otpExpiration;
     await user.save();
 
-    return res.status(200).json(new ApiResponse(200, user, Msg.OTP_RESENT));
+    return res.status(200).json(new ApiResponse(200, {}, Msg.OTP_RESENT));
   } catch (error) {
     console.log(`error while resending otp`, error);
     return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
@@ -166,6 +160,7 @@ export const login = async (req, res) => {
       email: email.toLowerCase(),
     }).select("+password");
 
+    console.log("User:", user);
     if (!user)
       return res.status(400).json(new ApiResponse(400, {}, Msg.USER_NOT_FOUND));
 
@@ -188,7 +183,19 @@ export const login = async (req, res) => {
       },
     );
 
-    return res.status(200).json(new ApiResponse(200, { token }, Msg.SUCCESS));
+    const userData = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      gender: user.gender,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
+
+    return res
+      .status(200)
+      .json(new ApiResponse(200, { user: userData, token }, Msg.SUCCESS));
   } catch (error) {
     console.log(`error while user login`, error);
     return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
