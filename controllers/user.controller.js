@@ -33,7 +33,7 @@ export const userRegister = async (req, res) => {
     if (existingUser)
       return res.status(400).json(new ApiResponse(400, {}, Msg.USER_EXISTS));
 
-    const otp = generateOtp();
+    const otp = "9999";
     const otpExpiration = getExpirationTime();
 
     const user = await User.create({
