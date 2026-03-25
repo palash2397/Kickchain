@@ -140,7 +140,6 @@ export const resendOtp = async (req, res) => {
     user.otpExpireAt = otpExpiration;
     await user.save();
 
-
     return res.status(200).json(new ApiResponse(200, user, Msg.OTP_RESENT));
   } catch (error) {
     console.log(`error while resending otp`, error);
@@ -192,6 +191,24 @@ export const login = async (req, res) => {
     return res.status(200).json(new ApiResponse(200, { token }, Msg.SUCCESS));
   } catch (error) {
     console.log(`error while user login`, error);
+    return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
+  }
+};
+
+export const myProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) {
+      return res.status(404).json(new ApiResponse(404, {}, Msg.USER_NOT_FOUND));
+    }
+    user.avatar = user.avatar
+      ? `${process.env.BASE_URL}/profile/${user.avatar}`
+      : null;
+    return res
+      .status(200)
+      .json(new ApiResponse(200, user, Msg.USER_PROFILE_FETCHED));
+  } catch (error) {
+    console.log(`error while getting user profile`, error);
     return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
   }
 };

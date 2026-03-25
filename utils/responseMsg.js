@@ -12,8 +12,10 @@ export const Msg = {
   USER_ALREADY_VERIFIED: `User Already verified`,
   USER_NOT_VERIFIED: `User not verified`,
   USER_NOT_FOUND: `User not found`,
+  USER_PROFILE_FETCHED: `User profile fetched successfully`,
   ACCOUNT_DEACTIVATED: `Account has been temporarily deactivated`,
   ACCOUNT_VERIFIED: `User account verified successfully.`,
+
 
   
   // Admin
