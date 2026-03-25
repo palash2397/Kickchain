@@ -16,7 +16,7 @@ const port = process.env.PORT || 4006;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/api/v1",express.static(path.join(__dirname, "public")));
 
 import rootRouter from "./routes/root.routes.js";
 app.use("/api/v1", rootRouter);
