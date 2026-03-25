@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -12,6 +13,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+    },
+
+    countryCode:{
+      type: String,
+      required: false,
     },
 
     phoneNumber: {
