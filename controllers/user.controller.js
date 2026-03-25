@@ -221,3 +221,14 @@ export const myProfile = async (req, res) => {
     return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
   }
 };
+
+
+export const updateProfile = async (req, res) => {
+  try {
+   const { name, email, phoneNumber, gender } = req.body;
+   
+  } catch (error) {
+    console.log(`error while updating profile`, error);
+    return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
+  }
+};
