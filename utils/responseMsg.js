@@ -14,6 +14,7 @@ export const Msg = {
   USER_NOT_FOUND: `User not found`,
   USER_PROFILE_FETCHED: `User profile fetched successfully`,
   USERS_FETCHED: `Users fetched successfully`,
+  USER_PROFILE_UPDATED: `User profile updated successfully`,
   ACCOUNT_DEACTIVATED: `Account has been temporarily deactivated`,
   ACCOUNT_VERIFIED: `User account verified successfully.`,
 

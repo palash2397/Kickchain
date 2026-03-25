@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Msg } from "../utils/responseMsg.js";
 import { generateOtp, getExpirationTime } from "../utils/helpers.js";
+import { deleteOldImages } from "../utils/helpers.js";
 
 import User from "../models/user/user.js";
 
@@ -222,11 +223,43 @@ export const myProfile = async (req, res) => {
   }
 };
 
-
 export const updateProfile = async (req, res) => {
   try {
-   const { name, email, phoneNumber, gender } = req.body;
-   
+    const { name, email, phoneNumber, gender } = req.body;
+    const schema = Joi.object({
+      name: Joi.string().optional(),
+      email: Joi.string().email().optional(),
+      phoneNumber: Joi.string().optional(),
+      gender: Joi.string().optional(),
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, error.details[0].message));
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json(new ApiResponse(404, {}, Msg.USER_NOT_FOUND));
+    }
+
+    if (req.file) {
+      if (user.avatar) {
+        await deleteOldImages(user.avatar);
+      }
+      user.avatar = req.file.filename;
+    }
+    await User.findByIdAndUpdate(
+      req.user.id,
+      { $set: req.body },
+      { new: true, runValidators: true },
+    );
+
+    return res
+      .status(200)
+      .json(new ApiResponse(200, {}, Msg.USER_PROFILE_UPDATED));
   } catch (error) {
     console.log(`error while updating profile`, error);
     return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
