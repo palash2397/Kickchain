@@ -30,24 +30,12 @@ app.get("/api", (req, res) => {
   res.send("welcome to kickchain");
 });
 
-// app.listen(port, () => {
-//   console.clear();
-//   console.log(chalk.blue("╔════════════════════════════════════════════════════════════════╗"));
-//   console.log(chalk.blue("║") + "  " + chalk.cyan("KICKCHAIN") + " " + chalk.white("is running on port") + " " + chalk.green(port) + " " + chalk.blue("║"));
-//   console.log(chalk.blue("╚════════════════════════════════════════════════════════════════╝"));
-// });
-
-
-
 app.listen(port, () => {
   console.clear();
-  console.log(chalk.hex("#64748b")("╔══════════════════════════════════════════════╗"));
-  console.log(
-    chalk.hex("#64748b")("║  ") +
-      chalk.cyan("KICKCHAIN") +
-      chalk.white(" server started at ") +
-      chalk.green(port) +
-      chalk.hex("#64748b")("  ║")
-  );
-  console.log(chalk.hex("#64748b")("╚══════════════════════════════════════════════╝"));
+  console.log(chalk.blue("╔════════════════════════════════════════════════════════════════╗"));
+  console.log(chalk.blue("║") + "  " + chalk.cyan("KICKCHAIN") + " " + chalk.white("is running on port") + " " + chalk.green(port) + " " + chalk.blue("║"));
+  console.log(chalk.blue("╚════════════════════════════════════════════════════════════════╝"));
 });
+
+
+
