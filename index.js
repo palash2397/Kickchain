@@ -34,13 +34,13 @@ app.listen(port, () => {
   const now = new Date().toLocaleString();
 
   console.clear();
-  console.log(chalk.hex("#10b981")("╔════════════════════════════════════════════╗"));
-  console.log(chalk.hex("#10b981").bold("║                KICKCHAIN                  ║"));
-  console.log(chalk.hex("#10b981")("╠════════════════════════════════════════════╣"));
-  console.log(chalk.white("║  Mode        : ") + chalk.hex("#22c55e")("Production Ready") + chalk.white("             ║"));
-  //console.log(chalk.white("║  Host        : ") + chalk.hex("#38bdf8")(hostLabel.padEnd(26, " ")) + chalk.white("║"));
-  console.log(chalk.white("║  Started     : ") + chalk.hex("#facc15")(now.padEnd(26, " ")) + chalk.white("║"));
-  console.log(chalk.hex("#10b981")("╚════════════════════════════════════════════╝"));
-  console.log(chalk.hex("#86efac").bold("       Forging requests into momentum"));
+  console.log(chalk.hex("#a3e635").bold("        ◢◤ KICKCHAIN REACTOR ◥◣"));
+  console.log(chalk.gray("────────────────────────────────────────────"));
+  console.log(chalk.hex("#4ade80")("   STATUS        "), chalk.white("CHAIN IGNITED"));
+  //console.log(chalk.hex("#60a5fa")("   ENDPOINT      "), chalk.cyan(hostLabel));
+  console.log(chalk.hex("#f59e0b")("   BOOT TIME     "), chalk.yellow(now));
+  console.log(chalk.hex("#e879f9")("   SIGNAL        "), chalk.magenta("TRANSACTIONS READY"));
+  console.log(chalk.gray("────────────────────────────────────────────"));
+  console.log(chalk.bold.green("   No dust. No drift. Just blocks in motion."));
   console.log("");
 });
