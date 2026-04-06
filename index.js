@@ -31,5 +31,16 @@ app.get("/api", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Server is running on port ${port}`);
+  const now = new Date().toLocaleString();
+
+  console.clear();
+  console.log(chalk.hex("#10b981")("╔════════════════════════════════════════════╗"));
+  console.log(chalk.hex("#10b981").bold("║                KICKCHAIN                  ║"));
+  console.log(chalk.hex("#10b981")("╠════════════════════════════════════════════╣"));
+  console.log(chalk.white("║  Mode        : ") + chalk.hex("#22c55e")("Production Ready") + chalk.white("             ║"));
+  //console.log(chalk.white("║  Host        : ") + chalk.hex("#38bdf8")(hostLabel.padEnd(26, " ")) + chalk.white("║"));
+  console.log(chalk.white("║  Started     : ") + chalk.hex("#facc15")(now.padEnd(26, " ")) + chalk.white("║"));
+  console.log(chalk.hex("#10b981")("╚════════════════════════════════════════════╝"));
+  console.log(chalk.hex("#86efac").bold("       Forging requests into momentum"));
+  console.log("");
 });
