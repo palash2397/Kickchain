@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Msg } from "../utils/responseMsg.js";
 
-import { createAndSendNotification } from "../utils/firbase/createAndSendNotification.js";
+// import { createAndSendNotification } from "../utils/firbase/createAndSendNotification.js";
 
 import { FriendRequest } from "../models/friends/FriendRequest.js";
 import { User } from "../models/user/user.js";
