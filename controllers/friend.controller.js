@@ -78,6 +78,16 @@ export const sendFriendRequest = async (req, res) => {
         status: "pending",
       });
 
+      // await createAndSendNotification({
+      //   type: "friendRequest",
+      //   userId: receiverId,
+      //   title: "Friend Request",
+      //   message: "You have a new friend request",
+      //   data: {
+      //     friendRequestId: friendRequest._id,
+      //   },
+      // });
+
       return res
         .status(201)
         .json(new ApiResponse(201, newRequest, Msg.FRIEND_REQUEST_SENT));
