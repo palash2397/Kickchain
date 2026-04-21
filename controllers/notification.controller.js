@@ -156,7 +156,7 @@ export const updateNotificationSettings = async (req, res) => {
       .status(200)
       .json(new ApiResponse(200, settings, Msg.NOTIFICATION_SETTING_UPDATED));
   } catch (error) {
-    console.log("updateNotificationSettings error:", error);
+    console.log("Error updating notification settings:", error);
     return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
   }
 };
