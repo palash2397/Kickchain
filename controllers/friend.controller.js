@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Msg } from "../utils/responseMsg.js";
 
-// import { createAndSendNotification } from "../utils/firbase/createAndSendNotification.js";
+import { createAndSendNotification } from "../utils/firbase/createAndSendNotification.js";
 
 import { FriendRequest } from "../models/friends/FriendRequest.js";
 import { User } from "../models/user/user.js";
@@ -99,15 +99,15 @@ export const sendFriendRequest = async (req, res) => {
       status: "pending",
     });
 
-    // await createAndSendNotification({
-    //   type: "friendRequest",
-    //   userId: receiverId,
-    //   title: "Friend Request",
-    //   message: "You have a new friend request",
-    //   data: {
-    //     friendRequestId: friendRequest._id,
-    //   },
-    // });
+    await createAndSendNotification({
+      type: "friendRequest",
+      userId: receiverId,
+      title: "Friend Request",
+      message: "You have a new friend request",
+      data: {
+        friendRequestId: friendRequest._id,
+      },
+    });
 
     return res
       .status(201)
