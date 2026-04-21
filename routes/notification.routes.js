@@ -18,7 +18,7 @@ notificationRouter.put("/settings", auth, updateNotificationSettings);
 notificationRouter.get("/my", auth, myNotifications);
 notificationRouter.patch("/read/all", auth, markAllNotificationsAsRead);
 notificationRouter.patch("/read/:id", auth, markAsRead);
-notificationRouter.delete("/:notificationId", auth, deleteNotification);
 notificationRouter.delete("/all", auth, deleteAllNotifications);
+notificationRouter.delete("/:notificationId", auth, deleteNotification);
 
 export default notificationRouter;

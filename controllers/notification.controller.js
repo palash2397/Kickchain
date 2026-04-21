@@ -132,6 +132,8 @@ export const deleteAllNotifications = async (req, res) => {
     const notifications = await Notification.deleteMany({
       user: req.user.id,
     });
+
+    console.log("deleteAllNotifications notifications:", notifications);
     if (!notifications) {
       return res
         .status(404)
