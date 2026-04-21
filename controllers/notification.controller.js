@@ -127,6 +127,25 @@ export const deleteNotification = async (req, res) => {
   }
 };
 
+export const deleteAllNotifications = async (req, res) => {
+  try {
+    const notifications = await Notification.deleteMany({
+      user: req.user.id,
+    });
+    if (!notifications) {
+      return res
+        .status(404)
+        .json(new ApiResponse(404, {}, Msg.NOTIFICATION_NOT_FOUND));
+    }
+    return res
+      .status(200)
+      .json(new ApiResponse(200, {}, Msg.NOTIFICATION_DELETED));
+  } catch (error) {
+    console.log("deleteAllNotifications error:", error);
+    return res.status(500).json(new ApiResponse(500, {}, Msg.SERVER_ERROR));
+  }
+};
+
 export const myNotificationSettings = async (req, res) => {
   try {
     const settings = await NotificationSetting.findOne({ user: req.user.id });
