@@ -25,10 +25,15 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      # - name: Create ENV File
+        # run: |
+        #   touch .env
+        #   echo "${{ secrets.PROD_ENV_FILE }}" | tr -d '\r' > .env
+        #   chmod 600 .env
+        #   ls -lah .env
       - name: Create ENV File
         run: |
-          touch .env
-          echo "${{ secrets.PROD_ENV_FILE }}" | tr -d '\r' > .env
+          echo "${{ secrets.PROD_ENV_BASE64 }}" | base64 --decode > .env
           chmod 600 .env
           ls -lah .env
 
