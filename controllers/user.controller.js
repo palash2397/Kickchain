@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Msg } from "../utils/responseMsg.js";
-import { generateOtp, getExpirationTime } from "../utils/helpers.js";
+import {  getExpirationTime } from "../utils/helpers.js";
 import { NotificationSetting } from "../models/notification/setting.js";
 import { deleteOldImages } from "../utils/helpers.js";
 
