@@ -12,7 +12,7 @@ export const myNotifications = async (req, res) => {
       createdAt: -1,
     });
 
-    console.log(notifications);
+    // console.log(notifications);
 
     if (!notifications || notifications.length === 0) {
       return res
@@ -89,7 +89,7 @@ export const markAllNotificationsAsRead = async (req, res) => {
       { $set: { isRead: true } },
     );
 
-    console.log("markAllNotificationsAsRead data:", data);
+    // console.log("markAllNotificationsAsRead data:", data);
 
     return res
       .status(200)
@@ -103,11 +103,14 @@ export const markAllNotificationsAsRead = async (req, res) => {
 export const deleteNotification = async (req, res) => {
   try {
     const { notificationId } = req.params;
+    console.log("deleteNotification notificationId:", notificationId);
 
     const notification = await Notification.findOneAndDelete({
       _id: notificationId,
       user: req.user.id,
     });
+
+    console.log("deleteNotification notification:", notification);
 
     if (!notification) {
       return res
