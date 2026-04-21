@@ -5,6 +5,7 @@ import {
   markAsRead,
   markAllNotificationsAsRead,
   deleteNotification,
+  deleteAllNotifications,
   myNotifications
 
 } from "../controllers/notification.controller.js";
@@ -18,5 +19,6 @@ notificationRouter.get("/my", auth, myNotifications);
 notificationRouter.patch("/read/all", auth, markAllNotificationsAsRead);
 notificationRouter.patch("/read/:id", auth, markAsRead);
 notificationRouter.delete("/:notificationId", auth, deleteNotification);
+notificationRouter.delete("/all", auth, deleteAllNotifications);
 
 export default notificationRouter;
