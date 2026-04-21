@@ -1,6 +1,5 @@
 import Joi from "joi";
 
-import { User } from "../models/user/user.js";
 import { Notification } from "../models/notification/notification.js";
 import { NotificationSetting } from "../models/notification/setting.js";
 
