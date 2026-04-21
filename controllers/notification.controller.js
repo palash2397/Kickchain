@@ -12,7 +12,7 @@ export const myNotifications = async (req, res) => {
       createdAt: -1,
     });
 
-    // console.log(notifications);
+    console.log(notifications);
 
     if (!notifications || notifications.length === 0) {
       return res
