@@ -72,10 +72,24 @@ export const markAsRead = async (req, res) => {
 
 export const markAllNotificationsAsRead = async (req, res) => {
   try {
+
+    const data = await Notification.find({
+      user: req.user.id,
+      isRead: false,
+    });
+
+    if (!data || data.length === 0) {
+      return res
+        .status(200)
+        .json(new ApiResponse(200, {}, Msg.NOTIFICATIONS_NOT_FOUND));
+    }
+
     await Notification.updateMany(
       { user: req.user.id, isRead: false },
       { $set: { isRead: true } },
     );
+
+    console.log("markAllNotificationsAsRead data:", data);
 
     return res
       .status(200)
