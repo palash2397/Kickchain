@@ -6,15 +6,12 @@
 // | $$\  $$   | $$  | $$    $$| $$\  $$ | $$    $$| $$  | $$| $$  | $$  | $$  | $$\  $$$
 // | $$ \  $$ /$$$$$$|  $$$$$$/| $$ \  $$|  $$$$$$/| $$  | $$| $$  | $$ /$$$$$$| $$ \  $$
 // |__/  \__/|______/ \______/ |__/  \__/ \______/ |__/  |__/|__/  |__/|______/|__/  \__/
-                                                                                      
-                                                                                      
-                                                                                      
-
 
 import express from "express";
 import morgan from "morgan";
 import chalk from "chalk";
-import "dotenv/config.js"
+import cors from "cors";
+import "dotenv/config.js";
 
 import { connectDB } from "./DB/config.js";
 
@@ -24,17 +21,21 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
 const app = express();
 const port = process.env.PORT || 4006;
 
 connectDB();
 
 // Middleware
+app.use(
+  cors({
+    origin: "*",
+  }),
+);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/v1",express.static(path.join(__dirname, "public")));
+app.use("/api/v1", express.static(path.join(__dirname, "public")));
 
 import rootRouter from "./routes/root.routes.js";
 app.use("/api/v1", rootRouter);
@@ -45,10 +46,25 @@ app.get("/api", (req, res) => {
 
 app.listen(port, () => {
   console.clear();
-  console.log(chalk.blue("╔════════════════════════════════════════════════════════════════╗"));
-  console.log(chalk.blue("║") + "  " + chalk.cyan("KICKCHAIN") + " " + chalk.white("is running on port") + " " + chalk.green(port) + " " + chalk.blue("║"));
-  console.log(chalk.blue("╚════════════════════════════════════════════════════════════════╝"));
+  console.log(
+    chalk.blue(
+      "╔════════════════════════════════════════════════════════════════╗",
+    ),
+  );
+  console.log(
+    chalk.blue("║") +
+      "  " +
+      chalk.cyan("KICKCHAIN") +
+      " " +
+      chalk.white("is running on port") +
+      " " +
+      chalk.green(port) +
+      " " +
+      chalk.blue("║"),
+  );
+  console.log(
+    chalk.blue(
+      "╚════════════════════════════════════════════════════════════════╝",
+    ),
+  );
 });
-
-
-

@@ -1,4 +1,5 @@
 import Joi from "joi";
+import mongoose from 'mongoose';
 
 import { Notification } from "../models/notification/notification.js";
 import { NotificationSetting } from "../models/notification/setting.js";
