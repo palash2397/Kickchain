@@ -53,14 +53,14 @@ app.listen(port, () => {
   );
   console.log(
     chalk.blue("║") +
-      "  " +
-      chalk.cyan("KICKCHAIN") +
-      " " +
-      chalk.white("is running on port") +
-      " " +
-      chalk.green(port) +
-      " " +
-      chalk.blue("║"),
+    "  " +
+    chalk.cyan("KICKCHAIN") +
+    " " +
+    chalk.white("is running on port") +
+    " " +
+    chalk.green(port) +
+    " " +
+    chalk.blue("║"),
   );
   console.log(
     chalk.blue(
